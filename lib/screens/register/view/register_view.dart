@@ -7,6 +7,7 @@ import 'package:flutter_task/componants/custom_text_formfield.dart';
 import 'package:flutter_task/componants/my_navigate.dart';
 import 'package:flutter_task/componants/style/colors.dart';
 import 'package:flutter_task/componants/style/size.dart';
+import 'package:flutter_task/screens/home/view/home_view.dart';
 import 'package:flutter_task/screens/login/view/login_view.dart';
 
 import '../controller/register_cubit.dart';
@@ -164,6 +165,35 @@ class RegisterScreen extends StatelessWidget {
 
                           ],
                         ),
+                        SizedBox(height: height(context) * 0.02),
+                        InkWell(
+                            onTap: () {
+                              navigateTo(context, HomeScreen());
+                            },
+                            borderRadius: BorderRadius.circular(7),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7)
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: width(context)*0.01,vertical: height(context)*0.01),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                      text: "Skip",
+                                      color: AppColor.blueColor,
+                                      fontSize: AppFonts.t5,
+                                      fontweight: FontWeight.bold),
+                                  SizedBox(width: width(context) * 0.008),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    size: 20,
+                                    color: AppColor.blueColor,
+                                  ),
+                                ],
+                              ),
+                            ))
                       ],
                     ),
                   ),

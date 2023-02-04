@@ -27,7 +27,7 @@ class HomeCubit extends Cubit<HomeStates> {
       print(formData);
 
       homeResponse = await myDio(
-        dioHeaders: headers,
+        dioHeaders:CacheHelper.getData(key: AppCached.token) != null? headers:null,
         url: AllAppApiConfig.baseUrl + AllAppApiConfig.home,
         methodType: 'post',
         dioBody: formData,

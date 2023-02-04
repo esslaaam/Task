@@ -42,7 +42,7 @@ class ProductCubit extends Cubit<ProductStates> {
       print(formData);
 
       productDetailsResponse = await myDio(
-        dioHeaders: headers,
+        dioHeaders:CacheHelper.getData(key: AppCached.token) != null? headers:null,
         url: AllAppApiConfig.baseUrl + AllAppApiConfig.product,
         methodType: 'post',
         dioBody: formData,

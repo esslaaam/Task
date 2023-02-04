@@ -7,6 +7,7 @@ import 'package:flutter_task/componants/custom_text_formfield.dart';
 import 'package:flutter_task/componants/my_navigate.dart';
 import 'package:flutter_task/componants/style/colors.dart';
 import 'package:flutter_task/componants/style/size.dart';
+import 'package:flutter_task/screens/home/view/home_view.dart';
 import 'package:flutter_task/screens/register/view/register_view.dart';
 import '../controller/login_cubit.dart';
 import '../controller/login_states.dart';
@@ -52,7 +53,8 @@ class LoginScreen extends StatelessWidget {
                               return 'Email can\'t be empty';
                             } else if (!value.contains('@')) {
                               return 'Email must contain @';
-                            } else if (!RegExp(r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                            } else if (!RegExp(
+                                    r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
                                 .hasMatch(cubit.emailCtrl.text)) {
                               return 'Invalid Email';
                             }
@@ -83,10 +85,14 @@ class LoginScreen extends StatelessWidget {
                                   size: 25)),
                         ),
                         SizedBox(height: height(context) * 0.035),
-                        state is LoginLoadingState ? CustomLoading(): CustomBottom(
-                            context: context, label: "Login", onPressed: ()async {
-                              await cubit.login(context);
-                        }),
+                        state is LoginLoadingState
+                            ? CustomLoading()
+                            : CustomBottom(
+                                context: context,
+                                label: "Login",
+                                onPressed: () async {
+                                  await cubit.login(context);
+                                }),
                         SizedBox(height: height(context) * 0.015),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,18 +103,47 @@ class LoginScreen extends StatelessWidget {
                                 fontSize: AppFonts.t5),
                             SizedBox(width: width(context) * 0.015),
                             InkWell(
-                              onTap: (){
-                                navigateAndReplace(context: context, widget: RegisterScreen());
+                              onTap: () {
+                                navigateAndReplace(
+                                    context: context, widget: RegisterScreen());
                               },
                               child: CustomText(
                                   text: "Register",
                                   color: AppColor.blueColor,
                                   fontSize: AppFonts.t5,
-                              fontweight: FontWeight.bold),
+                                  fontweight: FontWeight.bold),
                             ),
-
                           ],
                         ),
+                        SizedBox(height: height(context) * 0.02),
+                        InkWell(
+                            onTap: () {
+                              navigateTo(context, HomeScreen());
+                            },
+                            borderRadius: BorderRadius.circular(7),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7)
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: width(context)*0.01,vertical: height(context)*0.01),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                      text: "Skip",
+                                      color: AppColor.blueColor,
+                                      fontSize: AppFonts.t5,
+                                      fontweight: FontWeight.bold),
+                                  SizedBox(width: width(context) * 0.008),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    size: 20,
+                                    color: AppColor.blueColor,
+                                  ),
+                                ],
+                              ),
+                            ))
                       ],
                     ),
                   ),

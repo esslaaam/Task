@@ -154,8 +154,8 @@ class CustomDrawer extends StatelessWidget {
                         EdgeInsets.symmetric(horizontal: width(context) * 0.06),
                     child: InkWell(
                       onTap: () {
-                        navigateAndFinish(
-                            context: context, widget: LoginScreen());
+                        CacheHelper.removeData(AppCached.token);
+                        navigateAndFinish(context: context, widget: LoginScreen());
                       },
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
