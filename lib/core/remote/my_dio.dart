@@ -46,37 +46,37 @@ myDio({
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         return responseMap(
-            status: response.data['status'],
+            success: response.data['success'],
             message: response.data['message'],
             data: response.data['data']);
       }
       else if (response.statusCode! >= 500) {
         return responseMap(
-            status: false, message: serverErrorError(appLanguage!));
+            success: false, message: serverErrorError(appLanguage!));
       }
       else if (isSocketException) {
         return responseMap(
-            status: false, message: weakInternetError(appLanguage!));
+            success: false, message: weakInternetError(appLanguage!));
       }
       else if (response.statusCode == 401 || response.statusCode == 302) {
         print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* no token");
       }
       else if (response.statusCode! >= 400 && response.statusCode! <= 499) {
         return responseMap(
-            status: false, message: response.data['message'], data: response.data['data']);
+            success: false, message: response.data['message'], data: response.data['data']);
       }
       else {
-        return responseMap(status: false, message: globalError(appLanguage!), data: null);
+        return responseMap(success: false, message: globalError(appLanguage!), data: null);
       }
     } catch (e) {
       print('global Dio Error Weak Internet$e');
-      return responseMap(status: false, message: globalError(appLanguage!), data: null);
+      return responseMap(success: false, message: globalError(appLanguage!), data: null);
 
     }
   } else {
     print('no network ');
     return responseMap(
-        status: false, message: noInternetsError(appLanguage!), data: null);
+        success: false, message: noInternetsError(appLanguage!), data: null);
   }
 }
 
@@ -109,6 +109,6 @@ String serverErrorError(String appLanguage) {
 }
 
 Map<dynamic, dynamic> responseMap(
-    {bool? status, String? message, dynamic data }) {
-  return {"status": status, "message": message.toString(), "data": data };
+    {bool? success, String? message, dynamic data }) {
+  return {"success": success, "message": message.toString(), "data": data };
 }

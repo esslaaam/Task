@@ -7,6 +7,8 @@ class AppCached{
   static const String name = "name";
   /// email
   static const String email = "email";
+  /// image
+  static const String image = "image";
 }
 
 

@@ -12,7 +12,7 @@ Widget CustomBottom({
     InkWell(
       onTap: onPressed,
       child: Container(
-        width: width(context!) * 0.7,
+        width: width(context!) * 0.77,
         height: height(context) * 0.07,
         decoration:const BoxDecoration(
               color: AppColor.blueColor,
